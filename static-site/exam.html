@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>考試模式 — K-Topik Linguist</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/theme.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="glass-header-page exam-page">
+    <header class="site-header" id="siteHeader">
+      <div class="site-header__inner">
+        <div class="site-header__left">
+          <button
+            type="button"
+            class="menu-toggle"
+            id="menuToggleBtn"
+            aria-label="開啟選單"
+            aria-expanded="false"
+          >
+            <span class="menu-toggle__icon" aria-hidden="true"></span>
+          </button>
+          <a class="logo" href="index.html" aria-label="K-Topik Linguist 回首頁">
+            <img class="logo__image" src="../data/img/LOGO-header.png" alt="" aria-hidden="true" />
+            <span class="logo__text">K-Topik Linguist</span>
+          </a>
+        </div>
+        <nav class="site-nav" aria-label="主選單">
+          <a class="site-nav__link" href="index.html">首頁</a>
+          <a class="site-nav__link" href="vocabulary.html">我的單字庫</a>
+          <div class="dropdown site-nav__dropdown" id="scriptModeDropdown">
+            <button
+              type="button"
+              class="dropdown__trigger"
+              id="scriptModeDropdownBtn"
+              aria-expanded="false"
+              aria-haspopup="menu"
+              aria-controls="scriptModeDropdownMenu"
+            >
+              考試模式
+              <span class="dropdown__chev" aria-hidden="true"></span>
+            </button>
+            <div class="dropdown__menu" id="scriptModeDropdownMenu" role="menu" hidden>
+              <a class="dropdown__item" role="menuitem" href="study.html">學習模式</a>
+              <a class="dropdown__item" role="menuitem" href="script.html">劇本模式</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+    <aside class="drawer" id="drawer" aria-hidden="true" aria-label="更多選單">
+      <nav class="drawer__nav" aria-label="側邊選單">
+        <div class="drawer__block">
+          <a class="drawer__link" href="vocabulary.html">我的單字庫</a>
+        </div>
+        <div class="drawer__block">
+          <button
+            type="button"
+            class="drawer__block-trigger"
+            id="difficultyDrawerToggle"
+            aria-expanded="true"
+            aria-controls="drawerDifficultyList"
+          >
+            目前難度
+            <span class="drawer__chev" aria-hidden="true"></span>
+          </button>
+          <ul class="difficulty-list" id="drawerDifficultyList">
+            <li class="difficulty-list__item" data-d="初級">
+              <span class="difficulty-list__check" aria-hidden="true">✓</span>
+              <span>初級</span>
+            </li>
+            <li class="difficulty-list__item" data-d="中級">
+              <span class="difficulty-list__check" aria-hidden="true">✓</span>
+              <span>中級</span>
+            </li>
+            <li class="difficulty-list__item" data-d="高級">
+              <span class="difficulty-list__check" aria-hidden="true">✓</span>
+              <span>高級</span>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="exam-page-main">
+      <section class="exam-stage" id="examStage" data-state="setup">
+        <div class="exam-setup-card" id="examSetupCard">
+          <h1 class="exam-setup-card__title">請選擇題型與題數</h1>
+
+          <div class="exam-type-group" id="examTypeGroup" role="radiogroup" aria-label="選擇題型">
+            <button type="button" class="exam-choice-btn is-selected" data-exam-type="vocabulary">
+              單字
+            </button>
+            <button type="button" class="exam-choice-btn" data-exam-type="grammar">文法</button>
+            <button type="button" class="exam-choice-btn" data-exam-type="mixed">混合</button>
+          </div>
+
+          <fieldset class="exam-count-group">
+            <legend class="exam-count-group__legend">請選擇題數</legend>
+            <label class="exam-count-option">
+              <input type="radio" name="examQuestionCount" value="10" checked />
+              <span>10題</span>
+            </label>
+            <label class="exam-count-option">
+              <input type="radio" name="examQuestionCount" value="15" />
+              <span>15題</span>
+            </label>
+            <label class="exam-count-option">
+              <input type="radio" name="examQuestionCount" value="20" />
+              <span>20題</span>
+            </label>
+          </fieldset>
+
+          <div class="exam-setup-actions">
+            <button type="button" class="exam-confirm-btn" id="examStartBtn">確認，開始考試</button>
+            <button type="button" class="exam-back-btn" id="examBackBtn">返回</button>
+          </div>
+        </div>
+
+        <section class="exam-session" id="examSession" hidden>
+          <p class="exam-session__intro">請完成以下題目，並送出，加油！</p>
+
+          <div class="exam-question-list" id="examQuestionList" aria-live="polite"></div>
+
+          <section class="exam-result-card" id="examResultCard" hidden>
+            <p class="exam-result-card__label">作答完成</p>
+            <h2 class="exam-result-card__title">本次成績</h2>
+            <div class="exam-result-card__metrics">
+              <div class="exam-result-metric">
+                <span class="exam-result-metric__label">錯誤題數</span>
+                <strong class="exam-result-metric__value" id="examWrongCount">0 題</strong>
+              </div>
+              <div class="exam-result-metric">
+                <span class="exam-result-metric__label">總分</span>
+                <strong class="exam-result-metric__value" id="examTotalScore">0 分</strong>
+              </div>
+            </div>
+          </section>
+
+          <div class="exam-actions" id="examActions">
+            <button type="button" class="exam-action-btn exam-action-btn--primary" id="examSubmitBtn" disabled>
+              Submit
+            </button>
+            <button type="button" class="exam-action-btn exam-action-btn--secondary" id="examResetSetupBtn">
+              返回
+            </button>
+            <button type="button" class="exam-action-btn exam-action-btn--home" id="examHomeBtn" aria-label="回首頁">
+              <span class="exam-home-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="18" height="18" focusable="false">
+                  <path
+                    d="M4 10.5L12 4l8 6.5V20h-5.25v-5.5h-5.5V20H4z"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </span>
+              <span>回首頁</span>
+            </button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 K-Topik Linguist All rights reserved.</p>
+    </footer>
+
+    <script src="js/chrome.js" defer></script>
+    <script src="js/exam-mode.js" defer></script>
+  </body>
+</html>

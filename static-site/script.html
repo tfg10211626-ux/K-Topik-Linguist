@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>劇本模式 — K-Topik Linguist</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/theme.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="glass-header-page">
+    <header class="site-header" id="siteHeader">
+      <div class="site-header__inner">
+        <div class="site-header__left">
+          <button
+            type="button"
+            class="menu-toggle"
+            id="menuToggleBtn"
+            aria-label="開啟選單"
+            aria-expanded="false"
+          >
+            <span class="menu-toggle__icon" aria-hidden="true"></span>
+          </button>
+          <a class="logo" href="index.html" aria-label="K-Topik Linguist 回首頁">
+            <img class="logo__image" src="../data/img/LOGO-header.png" alt="" aria-hidden="true" />
+            <span class="logo__text">K-Topik Linguist</span>
+          </a>
+        </div>
+        <nav class="site-nav" aria-label="主選單">
+          <a class="site-nav__link" href="index.html">首頁</a>
+          <a class="site-nav__link" href="vocabulary.html">我的單字庫</a>
+          <div class="dropdown site-nav__dropdown" id="scriptModeDropdown">
+            <button
+              type="button"
+              class="dropdown__trigger"
+              id="scriptModeDropdownBtn"
+              aria-expanded="false"
+              aria-haspopup="menu"
+              aria-controls="scriptModeDropdownMenu"
+            >
+              劇本模式
+              <span class="dropdown__chev" aria-hidden="true"></span>
+            </button>
+            <div class="dropdown__menu" id="scriptModeDropdownMenu" role="menu" hidden>
+              <a class="dropdown__item" role="menuitem" href="study.html">學習模式</a>
+              <a class="dropdown__item" role="menuitem" href="exam.html">考試模式</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+    <aside class="drawer" id="drawer" aria-hidden="true" aria-label="更多選單">
+      <nav class="drawer__nav" aria-label="側邊選單">
+        <div class="drawer__block">
+          <a class="drawer__link" href="vocabulary.html">我的單字庫</a>
+        </div>
+        <div class="drawer__block">
+          <button
+            type="button"
+            class="drawer__block-trigger"
+            id="difficultyDrawerToggle"
+            aria-expanded="true"
+            aria-controls="drawerDifficultyList"
+          >
+            目前難度
+            <span class="drawer__chev" aria-hidden="true"></span>
+          </button>
+          <ul class="difficulty-list" id="drawerDifficultyList">
+            <li class="difficulty-list__item" data-d="初級">
+              <span class="difficulty-list__check" aria-hidden="true">✓</span>
+              <span>初級</span>
+            </li>
+            <li class="difficulty-list__item" data-d="中級">
+              <span class="difficulty-list__check" aria-hidden="true">✓</span>
+              <span>中級</span>
+            </li>
+            <li class="difficulty-list__item" data-d="高級">
+              <span class="difficulty-list__check" aria-hidden="true">✓</span>
+              <span>高級</span>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="script-page">
+      <section class="script-stage">
+        <div class="script-stage__header">
+          <div class="script-stage__header-leading">
+            <p class="script-stage__label">Script Mode</p>
+            <aside
+              class="script-quick-words--header"
+              id="scriptQuickWords"
+              hidden
+              aria-label="本級推薦單字"
+            >
+              <span class="script-quick-words__label">本級推薦</span>
+              <div class="script-quick-words__buttons" id="scriptQuickWordsBtns"></div>
+            </aside>
+          </div>
+          <div class="script-stage__meta">
+            <p class="script-stage__level">目前等級：<strong id="currentLevelText">未選擇</strong></p>
+            <select
+              id="scriptScenarioSelect"
+              class="script-scenario-select"
+              name="scenario"
+              aria-label="情境"
+            >
+              <option value="">選擇情境</option>
+              <option value="romantic-love">浪漫愛情</option>
+              <option value="serious-history">嚴肅史劇</option>
+              <option value="soap-opera">狗血八點檔</option>
+            </select>
+            <div class="dropdown script-fav-nav-dropdown" id="scriptFavoritesDropdown">
+              <button
+                type="button"
+                class="dropdown__trigger"
+                id="scriptFavoritesDropdownBtn"
+                aria-expanded="false"
+                aria-haspopup="menu"
+                aria-controls="scriptFavoritesDropdownMenu"
+              >
+                收藏單字
+                <span class="dropdown__chev" aria-hidden="true"></span>
+              </button>
+              <div
+                class="dropdown__menu script-fav-nav-dropdown__menu"
+                id="scriptFavoritesDropdownMenu"
+                role="menu"
+                hidden
+              >
+                <p class="script-fav-nav-dropdown__empty" id="scriptFavoritesEmptyMsg">尚無收藏</p>
+                <ul class="script-fav-nav-dropdown__list" id="scriptFavoritesNavList" hidden></ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="script-stage__body-row">
+          <div class="script-stage__main-column">
+            <h1 class="acting-header">SHOW ME UR ACTING</h1>
+
+            <div class="script-stage__chat-row">
+              <section class="chat-board" id="chatBoard" aria-live="polite"></section>
+
+              <aside class="score-panel" aria-label="評分面板">
+            <div class="score-panel__body">
+            <div class="waveform-placeholder" id="scoreWaveformPlaceholder">
+              點選麥克風開始錄音
+            </div>
+
+            <div class="score-panel__metrics">
+              <label class="score-metric">
+                <span class="score-metric__head">
+                  <span class="score-metric__label">發音</span>
+                  <span class="score-metric__num" id="scoreNumAccuracy">—</span>
+                </span>
+                <input
+                  id="scoreRangeAccuracy"
+                  class="score-metric__range score-metric__range--readonly"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="0"
+                  aria-label="發音分數"
+                  disabled
+                />
+              </label>
+              <label class="score-metric">
+                <span class="score-metric__head">
+                  <span class="score-metric__label">流暢性</span>
+                  <span class="score-metric__num" id="scoreNumProsody">—</span>
+                </span>
+                <input
+                  id="scoreRangeProsody"
+                  class="score-metric__range score-metric__range--readonly"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="0"
+                  aria-label="流暢性分數"
+                  disabled
+                />
+              </label>
+              <label class="score-metric">
+                <span class="score-metric__head">
+                  <span class="score-metric__label">情感</span>
+                  <span class="score-metric__num" id="scoreNumActing">—</span>
+                </span>
+                <input
+                  id="scoreRangeActing"
+                  class="score-metric__range score-metric__range--readonly"
+                  type="range"
+                  min="0"
+                  max="100"
+                  value="0"
+                  aria-label="情感分數"
+                  disabled
+                />
+              </label>
+            </div>
+
+            <div class="score-panel__outcome">
+              <p class="total-score__level" id="scoreTotalRank">尚未評分</p>
+              <p class="score-average-line" id="scoreAverageLine">總分 —</p>
+              <p class="acting-feedback" id="scoreActingFeedback"></p>
+            </div>
+            </div>
+
+            <div class="score-panel__actions">
+              <button
+                type="button"
+                class="score-panel__btn score-panel__btn--primary"
+                id="scoreDemoBtn"
+              >
+                看我示範
+              </button>
+              <button
+                type="button"
+                class="score-panel__btn score-panel__btn--ghost"
+                id="scoreRetryBtn"
+              >
+                再試一次
+              </button>
+            </div>
+          </aside>
+            </div>
+
+            <div class="script-controls">
+              <div class="script-controls__input-wrap">
+                <form id="scriptForm" class="script-input-row">
+                  <button type="button" class="input-icon-btn" aria-label="快捷功能">
+                    <span aria-hidden="true">›</span>
+                  </button>
+                  <input
+                    class="script-word-input"
+                    id="scriptWordInput"
+                    name="word"
+                    type="text"
+                    placeholder="請輸入韓文單字"
+                    autocomplete="off"
+                    required
+                  />
+                  <button class="input-icon-btn input-icon-btn--send" type="submit" aria-label="送出">
+                    <span aria-hidden="true">↗</span>
+                  </button>
+                </form>
+              </div>
+
+              <label class="score-switch" for="scoreToggle">
+                <span>錄音與評分</span>
+                <input id="scoreToggle" type="checkbox" />
+                <span class="score-switch__slider" aria-hidden="true"></span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 K-Topik Linguist All rights reserved.</p>
+    </footer>
+
+    <dialog class="score-enable-dialog" id="scoreEnableDialog" aria-labelledby="scoreEnableDialogTitle">
+      <p class="score-enable-dialog__title" id="scoreEnableDialogTitle">請問是否開啟錄音與評分功能</p>
+      <div class="score-enable-dialog__actions">
+        <button type="button" class="score-enable-dialog__btn score-enable-dialog__btn--primary" id="scoreEnableConfirm">
+          開啟
+        </button>
+        <button type="button" class="score-enable-dialog__btn score-enable-dialog__btn--muted" id="scoreEnableDismiss">
+          下次再說
+        </button>
+      </div>
+    </dialog>
+
+    <script src="js/chrome.js" defer></script>
+    <script src="js/script.js" defer></script>
+  </body>
+</html>

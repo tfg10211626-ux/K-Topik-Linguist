@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>我的單字庫 — K-Topik Linguist</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/theme.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="vocabulary-library-page glass-header-page">
+    <header class="site-header" id="siteHeader">
+      <div class="site-header__inner">
+        <div class="site-header__left">
+          <button
+            type="button"
+            class="menu-toggle"
+            id="menuToggleBtn"
+            aria-label="開啟選單"
+            aria-expanded="false"
+          >
+            <span class="menu-toggle__icon" aria-hidden="true"></span>
+          </button>
+          <a class="logo" href="index.html" aria-label="K-Topik Linguist 回首頁">
+            <img class="logo__image" src="../data/img/LOGO-header.png" alt="" aria-hidden="true" />
+            <span class="logo__text">K-Topik Linguist</span>
+          </a>
+        </div>
+        <nav class="site-nav" aria-label="主選單">
+          <a class="site-nav__link" href="index.html">首頁</a>
+          <a class="site-nav__link site-nav__link--active" href="vocabulary.html">我的單字庫</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+    <aside class="drawer" id="drawer" aria-hidden="true" aria-label="更多選單">
+      <nav class="drawer__nav" aria-label="側邊選單">
+        <div class="drawer__block">
+          <a class="drawer__link" href="vocabulary.html">我的單字庫</a>
+        </div>
+        <div class="drawer__block">
+          <button
+            type="button"
+            class="drawer__block-trigger"
+            id="difficultyDrawerToggle"
+            aria-expanded="true"
+            aria-controls="drawerDifficultyList"
+          >
+            目前難度
+            <span class="drawer__chev" aria-hidden="true"></span>
+          </button>
+          <ul class="difficulty-list" id="drawerDifficultyList">
+            <li class="difficulty-list__item" data-d="初級">
+              <span class="difficulty-list__check" aria-hidden="true">✓</span>
+              <span>初級</span>
+            </li>
+            <li class="difficulty-list__item" data-d="中級">
+              <span class="difficulty-list__check" aria-hidden="true">✓</span>
+              <span>中級</span>
+            </li>
+            <li class="difficulty-list__item" data-d="高級">
+              <span class="difficulty-list__check" aria-hidden="true">✓</span>
+              <span>高級</span>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="vocab-library-page__main">
+      <div class="vocab-library-layout">
+        <section class="vocab-library-panel" aria-labelledby="vocabLibraryHeading">
+          <div class="vocab-library-panel__inner">
+            <div class="vocab-library-panel__heading">
+              <div class="vocab-library-panel__toolbar">
+                <button type="button" class="vocab-toolbar-btn" id="vocabSelectModeBtn">選取</button>
+                <div class="vocab-library-panel__selection-actions" id="vocabSelectionActions" hidden>
+                  <button type="button" class="vocab-toolbar-btn" id="vocabSelectAllBtn">全選</button>
+                  <button type="button" class="vocab-toolbar-btn" id="vocabBulkDeleteBtn" disabled>刪除</button>
+                  <button
+                    type="button"
+                    class="vocab-toolbar-btn vocab-toolbar-btn--ghost"
+                    id="vocabCancelSelectionBtn"
+                  >
+                    取消
+                  </button>
+                </div>
+              </div>
+              <h2 class="vocab-library-panel__title" id="vocabLibraryHeading">我的學習庫</h2>
+            </div>
+            <div id="vocabScriptFavoritesMount"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <dialog class="vocab-dialog" id="vocabDeleteDialog">
+      <form method="dialog" class="vocab-dialog__panel">
+        <p class="vocab-dialog__title">是否確認刪除</p>
+        <p class="vocab-dialog__body" id="vocabDeleteDialogText">刪除後將會從單字庫移除。</p>
+        <div class="vocab-dialog__actions">
+          <button type="button" class="vocab-dialog__btn vocab-dialog__btn--danger" id="vocabDeleteConfirmBtn">
+            是
+          </button>
+          <button type="button" class="vocab-dialog__btn" id="vocabDeleteCancelBtn">否</button>
+        </div>
+      </form>
+    </dialog>
+
+    <footer class="site-footer">
+      <p>© 2026 K-Topik Linguist All rights reserved.</p>
+    </footer>
+
+    <script src="js/chrome.js" defer></script>
+    <script src="js/vocabulary-page.js" defer></script>
+  </body>
+</html>

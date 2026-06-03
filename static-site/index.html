@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>K-Topik Linguist — 首頁</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/theme.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="glass-header-page">
+    <header class="site-header" id="siteHeader">
+      <div class="site-header__inner">
+        <div class="site-header__left">
+          <button
+            type="button"
+            class="menu-toggle"
+            id="menuToggleBtn"
+            aria-label="開啟選單"
+            aria-expanded="false"
+          >
+            <span class="menu-toggle__icon" aria-hidden="true"></span>
+          </button>
+          <a class="logo" href="index.html" aria-label="K-Topik Linguist 回首頁">
+            <img class="logo__image" src="../data/img/LOGO-header.png" alt="" aria-hidden="true" />
+            <span class="logo__text">K-Topik Linguist</span>
+          </a>
+        </div>
+        <nav class="site-nav" aria-label="主選單">
+          <a class="site-nav__link site-nav__link--active" href="index.html">首頁</a>
+          <a class="site-nav__link" href="vocabulary.html">我的單字庫</a>
+        </nav>
+      </div>
+    </header>
+
+    <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+    <aside class="drawer" id="drawer" aria-hidden="true" aria-label="更多選單">
+      <nav class="drawer__nav" aria-label="側邊選單">
+        <div class="drawer__block">
+          <a class="drawer__link" href="vocabulary.html">我的單字庫</a>
+        </div>
+        <div class="drawer__block">
+          <button
+            type="button"
+            class="drawer__block-trigger"
+            id="difficultyDrawerToggle"
+            aria-expanded="true"
+            aria-controls="drawerDifficultyList"
+          >
+            目前難度
+            <span class="drawer__chev" aria-hidden="true"></span>
+          </button>
+          <ul class="difficulty-list" id="drawerDifficultyList">
+            <li class="difficulty-list__item" data-d="初級">
+              <span class="difficulty-list__check" aria-hidden="true">✓</span>
+              <span>初級</span>
+            </li>
+            <li class="difficulty-list__item" data-d="中級">
+              <span class="difficulty-list__check" aria-hidden="true">✓</span>
+              <span>中級</span>
+            </li>
+            <li class="difficulty-list__item" data-d="高級">
+              <span class="difficulty-list__check" aria-hidden="true">✓</span>
+              <span>高級</span>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="main-wrap">
+      <div class="hero-grid">
+        <section class="hero-copy" aria-labelledby="welcomeTitle">
+          <h1 class="hero-copy__title" id="welcomeTitle">Welcome!</h1>
+          <p class="hero-copy__subtitle">
+            透過情境劇本與系統化學習，在短時間內掌握重點單字與文法，今天也要把韓文當韓劇學！
+          </p>
+        </section>
+
+        <section class="panel-card" aria-labelledby="panelTitle">
+          <div id="stepDifficulty">
+            <h2 class="panel-card__heading" id="panelTitle">請選擇難度</h2>
+            <div class="btn-row btn-row--difficulty" role="group" aria-label="難度">
+              <button type="button" class="choice-btn" data-difficulty="初級">初級</button>
+              <button type="button" class="choice-btn" data-difficulty="中級">中級</button>
+              <button type="button" class="choice-btn" data-difficulty="高級">高級</button>
+            </div>
+            <button type="button" class="confirm-btn" id="confirmDifficultyBtn" disabled>
+              確認，選擇模式
+            </button>
+          </div>
+
+          <div id="stepMode" hidden>
+            <h2 class="panel-card__heading">請選擇模式</h2>
+            <div class="btn-row btn-row--mode" role="group" aria-label="學習模式">
+              <button type="button" class="choice-btn" data-mode="script">劇本模式</button>
+              <button type="button" class="choice-btn" data-mode="study">學習模式</button>
+              <button type="button" class="choice-btn" data-mode="exam">考試模式</button>
+            </div>
+            <div class="btn-row-inline">
+              <button type="button" class="confirm-btn" id="startLearningBtn" disabled>
+                Start Learning
+              </button>
+              <button type="button" class="confirm-btn" id="backToDifficultyBtn">返回</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <p>© 2026 K-Topik Linguist All rights reserved.</p>
+    </footer>
+    <script src="js/chrome.js" defer></script>
+    <script src="js/home.js" defer></script>
+  </body>
+</html>

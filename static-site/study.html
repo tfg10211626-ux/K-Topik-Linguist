@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>學習模式 — K-Topik Linguist</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <script src="js/theme.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Noto+Sans+TC:wght@400;500;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body class="glass-header-page study-page">
+    <header class="site-header" id="siteHeader">
+      <div class="site-header__inner">
+        <div class="site-header__left">
+          <button
+            type="button"
+            class="menu-toggle"
+            id="menuToggleBtn"
+            aria-label="開啟選單"
+            aria-expanded="false"
+          >
+            <span class="menu-toggle__icon" aria-hidden="true"></span>
+          </button>
+          <a class="logo" href="index.html" aria-label="K-Topik Linguist 回首頁">
+            <img class="logo__image" src="../data/img/LOGO-header.png" alt="" aria-hidden="true" />
+            <span class="logo__text">K-Topik Linguist</span>
+          </a>
+        </div>
+        <nav class="site-nav" aria-label="主選單">
+          <a class="site-nav__link" href="index.html">首頁</a>
+          <a class="site-nav__link" href="vocabulary.html">我的學習庫</a>
+          <div class="dropdown site-nav__dropdown" id="scriptModeDropdown">
+            <button
+              type="button"
+              class="dropdown__trigger"
+              id="scriptModeDropdownBtn"
+              aria-expanded="false"
+              aria-haspopup="menu"
+              aria-controls="scriptModeDropdownMenu"
+            >
+              學習模式
+              <span class="dropdown__chev" aria-hidden="true"></span>
+            </button>
+            <div class="dropdown__menu" id="scriptModeDropdownMenu" role="menu" hidden>
+              <a class="dropdown__item" role="menuitem" href="script.html">劇本模式</a>
+              <a class="dropdown__item" role="menuitem" href="exam.html">考試模式</a>
+            </div>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+    <aside class="drawer" id="drawer" aria-hidden="true" aria-label="更多選單">
+      <nav class="drawer__nav" aria-label="側邊選單">
+        <div class="drawer__block">
+          <a class="drawer__link" href="vocabulary.html">我的學習庫</a>
+        </div>
+        <div class="drawer__block">
+          <button
+            type="button"
+            class="drawer__block-trigger"
+            id="difficultyDrawerToggle"
+            aria-expanded="true"
+            aria-controls="drawerDifficultyList"
+          >
+            目前難度
+            <span class="drawer__chev" aria-hidden="true"></span>
+          </button>
+          <ul class="difficulty-list" id="drawerDifficultyList">
+            <li class="difficulty-list__item" data-d="初級">
+              <span class="difficulty-list__check" aria-hidden="true">✓</span>
+              <span>初級</span>
+            </li>
+            <li class="difficulty-list__item" data-d="中級">
+              <span class="difficulty-list__check" aria-hidden="true">✓</span>
+              <span>中級</span>
+            </li>
+            <li class="difficulty-list__item" data-d="高級">
+              <span class="difficulty-list__check" aria-hidden="true">✓</span>
+              <span>高級</span>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="study-mode-page">
+      <section class="study-mode-stage" aria-labelledby="studyModeHeading">
+        <h1 class="study-mode-heading" id="studyModeHeading">學習模式</h1>
+
+        <div class="study-mode-frame" id="studyModeFrame">
+          <section class="study-mode-reader" aria-label="文章內容">
+            <div class="study-mode-reader__inner">
+              <textarea
+                class="study-mode-editor"
+                id="studyModeEditor"
+                placeholder="請貼上韓文文章，系統會依照目前 TOPIK 等級標出生字。"
+                aria-label="貼入學習文章"
+              ></textarea>
+              <div class="study-mode-article" id="studyModeArticle" hidden></div>
+            </div>
+          </section>
+
+          <aside class="study-mode-detail-panel" id="studyModeDetailPanel" aria-label="單字解釋" hidden>
+            <div class="study-mode-detail-list" id="studyModeDetailList"></div>
+          </aside>
+        </div>
+
+        <form class="study-mode-input-form" id="studyModeForm">
+          <div class="study-mode-action-row">
+            <button type="submit" class="study-mode-action-btn study-mode-action-btn--primary">
+              送出
+            </button>
+            <button
+              type="button"
+              class="study-mode-action-btn study-mode-action-btn--ghost"
+              id="studyModeClearBtn"
+            >
+              全部清空
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <div class="study-mode-toast" id="studyModeToast" hidden>已收藏成功</div>
+
+    <footer class="site-footer">
+      <p>© 2026 K-Topik Linguist All rights reserved.</p>
+    </footer>
+
+    <script src="js/chrome.js" defer></script>
+    <script src="js/study-mode.js" defer></script>
+  </body>
+</html>
